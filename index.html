@@ -1,0 +1,32 @@
+<html lang="en">
+    <head>
+        <title>Bla Bla</title>
+        <script src="script/blabla.js"></script>
+        <script src="script/base.js"></script>
+        <script src="script/type/starwars.js"></script>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <div id="main" class="main"></div>
+        <script>
+            var state = "running";
+            var main = document.getElementById('main');
+            var bla = BlaBla.starwars.createAnimation(main, {
+                title: 'Star Wars',
+                text: "It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire.<br><br>During the battle, Rebel spies managed to steal secret plans to the Empire's ultimate weapon, the DEATH STAR, an armored space station with enough power to destroy an entire planet.<br><br> Pursued by the Empire's sinister agents, Princess Leia races home aboard her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy...."
+            });
+            bla.start();
+
+            main.onclick = function () {
+                if (state === "running") {
+                    state = "paused";
+                    bla.pause();
+                } else {
+                    state = "running";
+                    bla.continue();
+                }
+            }
+
+        </script>
+    </body>
+</html>

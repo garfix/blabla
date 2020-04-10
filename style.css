@@ -1,0 +1,5 @@
+@font-face { font-family: "FranklinGothicBook"; src: url('franklin-gothic-book.ttf') format("truetype"); }
+
+.main {
+    height: 500px;
+}
