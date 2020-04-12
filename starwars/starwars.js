@@ -7,12 +7,13 @@ BlaBla.starwars = {
     createComponent: function (element, data) {
 
         const starCount = 500;
+        const fadeDuration = 2000;
+        const scaleDuration = 6000;
+
         const wpStartIntro = 0;
-        const wpStartLogo = 500;
-        const wpStartText = wpStartLogo + 4 * 50;
-        const wpEndText = wpStartText + 2900;
-        const fadeDuration = 100;
-        const scaleDuration = 6 * 50;
+        const wpStartLogo = 10000;
+        const wpStartText = wpStartLogo + 4000;
+        const wpEndText = wpStartText + 58000;
 
         return {
             setup: function() {
@@ -70,8 +71,8 @@ BlaBla.starwars = {
                         text.innerHTML = data.text;
                     },
                     step: function (time) {
-                        if (time > wpStartText && time < wpEndText) {
-                            let y = (time - wpStartText) / 2;
+                        if (time >= wpStartText && time <= wpEndText) {
+                            let y = (time - wpStartText) / 40;
                             this.text.style.transform = "translateY(" + (400 - y) + "px)";
                         }
                     }
@@ -99,10 +100,10 @@ BlaBla.starwars = {
                         text.innerHTML = data.intro;
                     },
                     step: function (time) {
-                        if (time > wpStartIntro && time <= wpStartIntro + fadeDuration) {
+                        if (time >= wpStartIntro && time <= wpStartIntro + fadeDuration) {
                             this.text.style.opacity = (time - wpStartIntro) / fadeDuration;
                         }
-                        if (time > wpStartLogo - fadeDuration && time <= wpStartLogo) {
+                        if (time >= wpStartLogo - fadeDuration && time <= wpStartLogo) {
                             this.text.style.opacity = (wpStartLogo - time) / fadeDuration;
                         }
                     }
@@ -130,7 +131,7 @@ BlaBla.starwars = {
                         text.innerHTML = data.title;
                     },
                     step: function (time) {
-                        if (time > wpStartLogo && time <= wpStartLogo + scaleDuration) {
+                        if (time >= wpStartLogo && time <= wpStartLogo + scaleDuration) {
                             let fraction = 1 - (time - wpStartLogo) / scaleDuration;
                             this.text.style.opacity = fraction;
                             this.text.style.transform = "translate(-50%, -50%) scale(" + fraction + ")";

@@ -2,6 +2,7 @@ BlaBla = {
 
     processes: [],
     processIncrement: 0,
+    prevTime: null,
 
     addProcess: function (component, element) {
 
@@ -9,6 +10,7 @@ BlaBla = {
 
         let process = {
             id: this.processIncrement,
+            // time in milliseconds
             time: 0,
             component: component,
             element: element,
@@ -59,10 +61,16 @@ BlaBla = {
     },
 
     start: function () {
+        this.prevTime = (new Date()).getTime();
         this.step();
     },
 
     step: function () {
+
+        let time = (new Date()).getTime();
+        let timeDiff = time - this.prevTime;
+
+        this.prevTime = time;
 
         for (let i = 0; i < this.processes.length; i++) {
             let process = this.processes[i];
@@ -74,7 +82,7 @@ BlaBla = {
                 let animation = animations[a];
                 animation.step(process.time);
             }
-            process.time++;
+            process.time += timeDiff;
         }
 
         window.requestAnimationFrame(() => { this.step(); });
