@@ -31,11 +31,13 @@ BlaBla = {
             }
         };
 
-        this.processes.push(process);
+        component.setup();
 
         for (let a = 0; a < component.animations.length; a++) {
             component.animations[a].setup();
         }
+
+        this.processes.push(process);
 
         return process;
     },
