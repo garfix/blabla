@@ -5,7 +5,15 @@ BlaBla.starwars = {
     // https://dev.to/christopherkade/developing-the-star-wars-opening-crawl-in-htmlcss-2j9e
     createComponent: function (element, data) {
 
+        const wpStartIntro = 0;
+        const wpStartLogo = 500;
+        const wpStartText = 500;
+        const wpEndText = wpStartText + 2900;
+        const fadeDuration = 100;
+
         return {
+
+
             setup: function() {
                 element.style.perspective = "200px";
                 element.style.overflow = "hidden";
@@ -35,6 +43,7 @@ BlaBla.starwars = {
                         text.style.fontSize = "30pt";
                         text.style.fontWeight = "bold";
                         text.style.textAlign = "justify";
+                        text.style.transform = "translateY(400px)";
                         surface.appendChild(text);
 
                         let overlay = BlaBla.base.createDiv();
@@ -49,11 +58,15 @@ BlaBla.starwars = {
                         text.innerHTML = data.text;
                     },
                     step: function (time) {
-                        if (time < 1450) {
-                            this.text.style.transform = "translateY(" + (400 - time) + "px)";
+                        if (time > wpStartText && time < wpEndText) {
+                            let y = (time - wpStartText) / 2;
+                            this.text.style.transform = "translateY(" + (400 - y) + "px)";
                         }
                     }
                 }, {
+
+                    text: null,
+
                     setup: function () {
 
                         let text = BlaBla.base.createDiv();
@@ -70,10 +83,16 @@ BlaBla.starwars = {
                         text.style.textAlign = "justify";
                         element.appendChild(text);
 
+                        this.text = text;
                         text.innerHTML = data.intro;
                     },
                     step: function (time) {
-
+                        if (time > wpStartIntro && time <= wpStartIntro + fadeDuration) {
+                            this.text.style.opacity = (time - wpStartIntro) / fadeDuration;
+                        }
+                        if (time > wpStartLogo - fadeDuration && time <= wpStartLogo) {
+                            this.text.style.opacity = (wpStartLogo - time) / fadeDuration;
+                        }
                     }
                 }
             ]
