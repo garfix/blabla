@@ -3,17 +3,17 @@ BlaBla.starwars = {
     // http://www.theforce.net/fanfilms/postproduction/crawl/opening.asp
     // https://gist.github.com/christopherkade/97fd94f20c3a4ffddfa5aba46261082f
     // https://dev.to/christopherkade/developing-the-star-wars-opening-crawl-in-htmlcss-2j9e
+    // https://www.dafontfree.io/star-jedi-font/
     createComponent: function (element, data) {
 
         const wpStartIntro = 0;
         const wpStartLogo = 500;
-        const wpStartText = 500;
+        const wpStartText = wpStartLogo + 4 * 50;
         const wpEndText = wpStartText + 2900;
         const fadeDuration = 100;
+        const scaleDuration = 6 * 50;
 
         return {
-
-
             setup: function() {
                 element.style.perspective = "200px";
                 element.style.overflow = "hidden";
@@ -63,8 +63,8 @@ BlaBla.starwars = {
                             this.text.style.transform = "translateY(" + (400 - y) + "px)";
                         }
                     }
-                }, {
-
+                },
+                {
                     text: null,
 
                     setup: function () {
@@ -92,6 +92,36 @@ BlaBla.starwars = {
                         }
                         if (time > wpStartLogo - fadeDuration && time <= wpStartLogo) {
                             this.text.style.opacity = (wpStartLogo - time) / fadeDuration;
+                        }
+                    }
+                },
+                {
+                    text: null,
+
+                    setup: function () {
+
+                        let text = BlaBla.base.createDiv();
+                        text.style.position = "absolute";
+                        text.style.top = "50%";
+                        text.style.left = "50%";
+                        text.style.transformOrigin = "center";
+                        text.style.transform = 'translate(-50%, -50%) scale(0)';
+                        text.style.width = "700px";
+                        text.style.color = "#c8a90b";
+                        text.style.fontFamily = "StarJediHollow";
+                        text.style.fontSize = "160pt";
+                        text.style.lineHeight = "128pt";
+                        text.style.textAlign = "center";
+                        element.appendChild(text);
+
+                        this.text = text;
+                        text.innerHTML = data.title;
+                    },
+                    step: function (time) {
+                        if (time > wpStartLogo && time <= wpStartLogo + scaleDuration) {
+                            let fraction = 1 - (time - wpStartLogo) / scaleDuration;
+                            this.text.style.opacity = fraction;
+                            this.text.style.transform = "translate(-50%, -50%) scale(" + fraction + ")";
                         }
                     }
                 }
