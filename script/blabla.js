@@ -1,14 +1,14 @@
 BlaBla = {
 
     processes: [],
+    processIncrement: 0,
 
     addProcess: function (component, element) {
 
-        for (let a = 0; a < component.animations.length; a++) {
-            component.animations[a].setup();
-        }
+        this.processIncrement++;
 
         let process = {
+            id: this.processIncrement,
             time: 0,
             component: component,
             element: element,
@@ -33,7 +33,27 @@ BlaBla = {
 
         this.processes.push(process);
 
+        for (let a = 0; a < component.animations.length; a++) {
+            component.animations[a].setup();
+        }
+
         return process;
+    },
+
+    removeProcess: function(processId) {
+
+        let newProcesses = [];
+
+        for (let i = 0; i < this.processes.length; i++) {
+            let process = this.processes[i];
+            if (process.id !== processId) {
+                newProcesses.push(process);
+            } else {
+                process.element.innerHTML = "";
+            }
+        }
+
+        this.processes = newProcesses;
     },
 
     start: function () {
@@ -49,7 +69,7 @@ BlaBla = {
             }
             let animations = process.component.animations;
             for (let a = 0; a < animations.length; a++) {
-                animation = animations[a];
+                let animation = animations[a];
                 animation.step(process.time);
             }
             process.time++;
