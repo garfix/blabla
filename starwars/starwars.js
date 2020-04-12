@@ -6,6 +6,7 @@ BlaBla.starwars = {
     // https://www.dafontfree.io/star-jedi-font/
     createComponent: function (element, data) {
 
+        const starCount = 500;
         const wpStartIntro = 0;
         const wpStartLogo = 500;
         const wpStartText = wpStartLogo + 4 * 50;
@@ -18,6 +19,17 @@ BlaBla.starwars = {
                 element.style.perspective = "200px";
                 element.style.overflow = "hidden";
                 element.style.backgroundColor = "#000";
+
+                for (let i = 0; i < starCount; i++) {
+                    let star = document.createElement('div');
+                    star.style.position = "absolute";
+                    star.style.backgroundColor = "#808080";
+                    star.style.width = "1px";
+                    star.style.height = "1px";
+                    star.style.left = Math.floor(Math.random() * element.offsetWidth) + "px";
+                    star.style.top = Math.floor(Math.random() * element.offsetHeight) + "px";
+                    element.appendChild(star);
+                }
             },
             animations: [
                 {
@@ -25,7 +37,7 @@ BlaBla.starwars = {
 
                     setup: function () {
 
-                        let surface = BlaBla.base.createDiv();
+                        let surface = document.createElement('div');
                         surface.style.width = "470px";
                         surface.style.height = "430px";
                         surface.style.color = '#ffffff';
@@ -35,7 +47,7 @@ BlaBla.starwars = {
                         surface.style.overflow = "hidden";
                         element.appendChild(surface);
 
-                        let text = BlaBla.base.createDiv();
+                        let text = document.createElement('div');
                         text.style.position = "absolute";
                         text.style.top = "0";
                         text.style.color = "#c8a90b";
@@ -46,7 +58,7 @@ BlaBla.starwars = {
                         text.style.transform = "translateY(400px)";
                         surface.appendChild(text);
 
-                        let overlay = BlaBla.base.createDiv();
+                        let overlay = document.createElement('div');
                         overlay.style.position = "absolute";
                         overlay.style.top = "0";
                         overlay.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 1.0), rgba(255, 0, 0, 0.0))";
@@ -69,7 +81,7 @@ BlaBla.starwars = {
 
                     setup: function () {
 
-                        let text = BlaBla.base.createDiv();
+                        let text = document.createElement('div');
                         text.style.position = "absolute";
                         text.style.top = "50%";
                         text.style.left = "50%";
@@ -100,7 +112,7 @@ BlaBla.starwars = {
 
                     setup: function () {
 
-                        let text = BlaBla.base.createDiv();
+                        let text = document.createElement('div');
                         text.style.position = "absolute";
                         text.style.top = "50%";
                         text.style.left = "50%";
