@@ -17,7 +17,10 @@ BlaBla.starwars = {
 
         return {
             setup: function() {
-                element.style.perspective = "300px";
+                // distance of viewer to z-0 plane
+                element.style.perspective = "600px";
+                // position of horizon
+                element.style.perspectiveOrigin = "top";
                 element.style.overflow = "hidden";
                 element.style.backgroundColor = "#000";
 
@@ -46,7 +49,7 @@ BlaBla.starwars = {
                         surface.style.color = '#ffffff';
                         surface.style.top = '60%';
                         surface.style.left = '50%';
-                        surface.style.transform = 'translate(-50%, -50%) rotateX(40deg)';
+                        surface.style.transform = 'translate(-50%, -50%) rotateX(90deg)';
                         surface.style.overflow = "hidden";
                         element.appendChild(surface);
 
