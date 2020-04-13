@@ -15,6 +15,9 @@ BlaBla = {
             component: component,
             element: element,
             state: "paused",
+            setTime: function(time) {
+                this.time = time;
+            },
             start: function () {
                 this.state = "running";
             },

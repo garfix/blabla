@@ -13,14 +13,15 @@ BlaBla.starwars = {
         const wpStartIntro = 0;
         const wpStartLogo = 10000;
         const wpStartText = wpStartLogo + 4000;
-        const wpEndText = wpStartText + 58000;
+        const wpEndText = wpStartText + 65000;
 
         return {
             setup: function() {
-                element.style.perspective = "200px";
+                element.style.perspective = "300px";
                 element.style.overflow = "hidden";
                 element.style.backgroundColor = "#000";
 
+                // stars
                 for (let i = 0; i < starCount; i++) {
                     let star = document.createElement('div');
                     star.style.position = "absolute";
@@ -39,12 +40,13 @@ BlaBla.starwars = {
                     setup: function () {
 
                         let surface = document.createElement('div');
+                        surface.style.position = 'absolute';
                         surface.style.width = "470px";
-                        surface.style.height = "430px";
+                        surface.style.height = "100%";
                         surface.style.color = '#ffffff';
-                        surface.style.marginLeft = 'auto';
-                        surface.style.marginRight = 'auto';
-                        surface.style.transform = 'rotateX(40deg)';
+                        surface.style.top = '60%';
+                        surface.style.left = '50%';
+                        surface.style.transform = 'translate(-50%, -50%) rotateX(40deg)';
                         surface.style.overflow = "hidden";
                         element.appendChild(surface);
 
@@ -56,7 +58,7 @@ BlaBla.starwars = {
                         text.style.fontSize = "30pt";
                         text.style.fontWeight = "bold";
                         text.style.textAlign = "justify";
-                        text.style.transform = "translateY(400px)";
+                        text.style.transform = "translateY(10000px)";
                         surface.appendChild(text);
 
                         let overlay = document.createElement('div');
@@ -73,7 +75,7 @@ BlaBla.starwars = {
                     step: function (time) {
                         if (time >= wpStartText && time <= wpEndText) {
                             let y = (time - wpStartText) / 40;
-                            this.text.style.transform = "translateY(" + (400 - y) + "px)";
+                            this.text.style.transform = "translateY(" + (600 - y) + "px)";
                         }
                     }
                 },
@@ -94,6 +96,7 @@ BlaBla.starwars = {
                         text.style.fontSize = "36pt";
                         text.style.fontWeight = "600";
                         text.style.textAlign = "justify";
+                        text.style.opacity = 0;
                         element.appendChild(text);
 
                         this.text = text;
