@@ -6,7 +6,7 @@ BlaBla.starwars = {
     // https://www.dafontfree.io/star-jedi-font/
     createComponent: function (element, data) {
 
-        const starCount = 500;
+        const starCount = 100;
         const fadeDuration = 2000;
         const scaleDuration = 6000;
 
