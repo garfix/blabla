@@ -22,6 +22,7 @@ BlaBla.matrix = {
                     setup: function () {
                         element.style.fontFamily = "Matrix";
                         element.style.fontSize = "24px";
+                        element.style.fontWeight = "bold";
                     },
                     step: function (time) {
 
@@ -31,15 +32,17 @@ BlaBla.matrix = {
                         let tilesX = Math.ceil(width / tileSizeX);
                         let tilesY = Math.ceil(height / tileSizeY);
 
+                        let wrapY = 3 * tilesY;
+
                         for (let x = 0; x < tilesX; x++) {
 
                             if (!this.matrix[x]) {
                                 this.matrix[x] = [];
                                 this.columns[x] = {
                                     // y position of leading character in the column
-                                    leaderPosition: Math.floor(Math.random() * tilesY),
+                                    leaderPosition: Math.floor(Math.random() * wrapY),
                                     // add this amount each time
-                                    leaderSpeed: 1 + Math.random() * 5,
+                                    leaderSpeed: 5 + Math.random() * 3,
                                     // variable counting up
                                     leaderCursor: 0,
                                 };
@@ -47,10 +50,10 @@ BlaBla.matrix = {
                             let column = this.columns[x];
                             column.leaderCursor += column.leaderSpeed;
                             if (column.leaderCursor > 10) {
-                                column.leaderCursor = 0;
+                                column.leaderCursor -= 10;
                                 column.leaderPosition++;
-                                if (column.leaderPosition >= tilesY * 3) {
-                                    column.leaderPosition = 0;
+                                if (column.leaderPosition >= wrapY) {
+                                    column.leaderPosition -= wrapY;
                                 }
                             }
 
@@ -78,7 +81,7 @@ BlaBla.matrix = {
                                         // variable counting up
                                         charRotationCursor: 0,
                                         // how long the cell stays in its current lightness
-                                        lightnessDuration: 1 + Math.floor(Math.random() * 5),
+                                        lightnessDuration: 1 + Math.floor(Math.random() * 3),
                                         // variable counting up
                                         lightnessCursor: 0,
                                         // current lightness in [0..100]
@@ -102,10 +105,8 @@ BlaBla.matrix = {
                                 if (cell.lightness > 0) {
                                     cell.lightnessCursor++;
                                     if (cell.lightnessCursor === cell.lightnessDuration) {
-                                        if (cell.lightness === 100) {
-                                            cell.lightness = 75;
-                                        } else if (cell.lightness === 75) {
-                                            cell.lightness = 50;
+                                        if (cell.lightness > 60) {
+                                            cell.lightness -= 10;
                                         } else {
                                             cell.lightness -= 2;
                                         }
@@ -113,7 +114,11 @@ BlaBla.matrix = {
                                     }
                                 }
                                 let tile = cell.tile;
-                                tile.textContent = chars[cell.charIndex];
+                                if (cell.lightness > 0) {
+                                    tile.textContent = chars[cell.charIndex];
+                                } else {
+                                    tile.textContent = '';
+                                }
                                 tile.style.color = "hsl(140 100% " + cell.lightness + "%)";
                             }
                         }
