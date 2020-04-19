@@ -1,0 +1,30 @@
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Matrix digital rain - Bla Bla</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+    <script src="script/blabla.js"></script>
+    <script src="matrix/patkat.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="matrix/style.css"/>
+</head>
+<body>
+<div id="main" class="main"></div>
+<script>
+
+    var main = document.getElementById('main');
+    var bla = BlaBla.patkat.createComponent(main);
+
+    let process = BlaBla.addProcess(bla, main);
+
+    process.start();
+
+    main.onclick = function () {
+        process.toggleState();
+    };
+
+    BlaBla.start();
+
+</script>
+</body>
+</html>
