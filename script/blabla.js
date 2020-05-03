@@ -2,7 +2,6 @@ BlaBla = {
 
     processes: [],
     processIncrement: 0,
-    prevTime: null,
 
     addProcess: function (component, element) {
 
@@ -64,30 +63,35 @@ BlaBla = {
     },
 
     start: function () {
-        this.prevTime = (new Date()).getTime();
-        this.step();
-    },
 
-    step: function () {
+        let prevTime = 0;
 
-        let time = (new Date()).getTime();
-        let timeDiff = time - this.prevTime;
+        let step = (time) => {
 
-        this.prevTime = time;
+            time = time || prevTime;
 
-        for (let i = 0; i < this.processes.length; i++) {
-            let process = this.processes[i];
-            if (process.state === "paused") {
-                continue;
+            let timeDiff = time - prevTime;
+
+            prevTime = time;
+
+            for (let i = 0; i < this.processes.length; i++) {
+                let process = this.processes[i];
+                if (process.state === "paused") {
+                    continue;
+                }
+
+                process.time += timeDiff;
+
+                let animations = process.component.animations;
+                for (let a = 0; a < animations.length; a++) {
+                    let animation = animations[a];
+                    animation.step(process.time);
+                }
             }
-            let animations = process.component.animations;
-            for (let a = 0; a < animations.length; a++) {
-                let animation = animations[a];
-                animation.step(process.time);
-            }
-            process.time += timeDiff;
-        }
 
-        window.requestAnimationFrame(() => { this.step(); });
+            window.requestAnimationFrame(step);
+        };
+
+        step();
     }
 };
