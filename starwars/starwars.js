@@ -125,11 +125,9 @@ BlaBla.starwars = {
                         text.style.left = "50%";
                         text.style.transformOrigin = "center";
                         text.style.transform = 'translate(-50%, -50%) scale(0)';
-                        text.style.width = "700px";
                         text.style.color = "#c8a90b";
                         text.style.fontFamily = "StarJediHollow";
-                        text.style.fontSize = "160pt";
-                        text.style.lineHeight = "128pt";
+                        text.style.fontSize = "50vh";
                         text.style.textAlign = "center";
                         element.appendChild(text);
 
@@ -140,7 +138,7 @@ BlaBla.starwars = {
                         if (time >= wpStartLogo && time <= wpStartLogo + scaleDuration) {
                             let fraction = 1 - (time - wpStartLogo) / scaleDuration;
                             this.text.style.opacity = fraction;
-                            this.text.style.transform = "translate(-50%, -50%) scale(" + fraction + ")";
+                            this.text.style.transform = " translate(-50%, -50%) scale(" + fraction + ")";
                         }
                     }
                 }
