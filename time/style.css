@@ -1,0 +1,22 @@
+.large-text {
+    will-change: transform;
+    position: absolute;
+    bottom: -30%;
+    left: 0;
+    font-family: "Times New Roman";
+    font-size: 100vh;
+    color: #030205;
+    filter: blur(1.5px);
+    text-shadow: 0 -2px 0 #d1719f;
+}
+.small-text {
+    will-change: transform;
+    position: absolute;
+    bottom: 23%;
+    left: 0;
+    font-family: "Times New Roman";
+    font-size: 40vh;
+    color: #030205;
+    filter: blur(1px);
+    text-shadow: 0 -1px 0 #d1719f;
+}
