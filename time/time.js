@@ -116,8 +116,9 @@ BlaBla.time = {
                         let bgColor = "black";
                         let opacity = 1;
                         if (barTime < barPulse) {
-                            let red = 255 - (barTime / barPulse) * 255;
-                            bgColor = "rgb(" + red + ", 0, 0)"
+                            let part = 1 - (barTime / barPulse);
+                            let color = this.calcColor([3, 2, 5], [255, 65, 140], part);
+                            bgColor = "rgb(" + color[0] + ", " + color[1] + ", " + color[2] + ")"
                         }
                         if (time >= firstStart && time < firstStart + barPulse) {
                             opacity = 1 - ((firstStart + barPulse - time) / barPulse);
@@ -152,6 +153,9 @@ BlaBla.time = {
                             this.barLeft.style.visibility = "visible";
                             this.barRight.style.visibility = "visible";
                         }
+                    },
+                    calcColor: function(from, to, part) {
+                        return [part*(to[0]-from[0]), part*(to[1]-from[1]), part*(to[2]-from[2])]
                     }
                 }
             ]
