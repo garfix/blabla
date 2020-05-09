@@ -1,22 +1,37 @@
+.surface {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 .large-text {
     will-change: transform;
     position: absolute;
-    bottom: -30%;
+    bottom: -30vh;
     left: 0;
     font-family: "Times New Roman";
     font-size: 100vh;
     color: #030205;
-    filter: blur(1.5px);
-    text-shadow: 0 -2px 0 #d1719f;
+    filter: blur(0.4vh);
 }
 .small-text {
     will-change: transform;
     position: absolute;
-    bottom: 23%;
+    bottom: 23vh;
     left: 0;
     font-family: "Times New Roman";
     font-size: 40vh;
     color: #030205;
-    filter: blur(1px);
-    text-shadow: 0 -1px 0 #d1719f;
+    filter: blur(0.2vh);
+}
+.large-shadow-top {
+    text-shadow: 0 -0.3vh 0 #d1719f;
+}
+.small-shadow-top {
+    text-shadow: 0 -0.15vh 0 #d1719f;
+}
+.large-shadow-left {
+    text-shadow: -0.3vw 0 0 #d1719f;
+}
+.small-shadow-left {
+    text-shadow: -0.15vw 0 0 #d1719f;
 }
