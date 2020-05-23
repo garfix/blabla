@@ -22,7 +22,7 @@ BlaBla.wargames = {
                         surface.style.position = "relative";
                         surface.style.height = "80vh";
                         surface.style.fontFamily = "WOPR";
-                        surface.style.fontSize = "24pt";
+                        surface.style.fontSize = "22pt";
                         surface.style.textShadow = "0 0 15pt #ffffff, 0 0 15pt #ffffff, 0 0 15pt #ffffff";
                         surface.style.color = '#91d9ff';
                         element.appendChild(surface);
@@ -33,7 +33,7 @@ BlaBla.wargames = {
                     },
                     step: function (time) {
 
-                        while (this.eventIndex < this.events.length - 1) {
+                        while (this.eventIndex < this.events.length) {
                             let event = this.events[this.eventIndex];
 
                             if (event.time > time) break;
