@@ -1,0 +1,42 @@
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>War Games - Bla Bla</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+    <script src="script/blabla.js"></script>
+    <script src="wargames/wargames.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="wargames/style.css"/>
+</head>
+<body>
+<div id="main" class="main"></div>
+<script>
+    var main = document.getElementById('main');
+    var bla = BlaBla.wargames.createComponent(main, {
+        fragments: [
+            {text: "GREETINGS PROFESSOR FALKEN.", speed: 10, delay: 1000},
+            {text: "Hello.", speed: 3, delay: 2000},
+            {text: "HOW ARE YOU FEELING TODAY?", speed: 10, delay: 2000},
+            {text: "I'm fine. How are you?", speed: 3, delay: 2000},
+            {text: "EXCELLENT. IT'S BEEN A LONG TIME. CAN YOU EXPLAIN THE REMOVAL OF YOUR USER ACCOUNT NUMBER ON 6/23/73?", speed: 10, delay: 2000},
+            {text: "People sometimes make mistak", speed: 3, delay: 2000},
+            {text: "YES THEY DO. SHALL WE PLAY A GAME?", speed: 10, delay: 0},
+            {text: "Love to. How about Global Thermonuclear War?", speed: 3, delay: 1000},
+            {text: "WOULDN'T YOU PREFER A GOOD GAME OF CHESS?", speed: 10, delay: 0},
+            {text: "Let's play Global Thermonuclear War.", speed: 3, delay: 1000},
+        ]
+    });
+
+    let process = BlaBla.addProcess(bla, main);
+
+    process.start();
+
+    main.onclick = function () {
+        process.toggleState();
+    };
+
+    BlaBla.start();
+
+</script>
+</body>
+</html>
