@@ -6,6 +6,7 @@ BlaBla.wargames = {
         return {
             setup: function() {
                 element.style.backgroundColor = "#000020";
+                element.style.padding = "10vh";
             },
             animations: [
                 {
@@ -17,12 +18,12 @@ BlaBla.wargames = {
                     setup: function () {
 
                         let surface = document.createElement('div');
-                        surface.style.padding = "10vw";
+                        surface.style.overflow = "hidden";
+                        surface.style.position = "relative";
+                        surface.style.height = "80vh";
                         surface.style.fontFamily = "WOPR";
                         surface.style.fontSize = "24pt";
                         surface.style.textShadow = "0 0 15pt #ffffff, 0 0 15pt #ffffff, 0 0 15pt #ffffff";
-                        surface.style.position = 'absolute';
-                        surface.style.height = "100%";
                         surface.style.color = '#91d9ff';
                         element.appendChild(surface);
 
@@ -39,15 +40,16 @@ BlaBla.wargames = {
 
                             if (event.type === 'add span') {
                                 let span = document.createElement('span');
-                                span.style.marginBottom = "24pt";
-                                this.currentSpan = span;
                                 this.surface.appendChild(span);
+                                this.currentSpan = span;
                             } else if (event.type === 'text') {
                                 this.currentSpan.textContent = event.contents
                             } else if (event.type === 'newline') {
                                 let br = document.createElement('br');
                                 this.surface.appendChild(br);
                             }
+
+                            this.surface.scrollTop = this.surface.scrollHeight;
 
                             this.eventIndex++;
                         }
@@ -56,7 +58,7 @@ BlaBla.wargames = {
 
                         let events = [];
                         let time = 0;
-                        let cursor = String.fromCodePoint(0x0002);
+                        let cursor = "ý";
 
                         events.push({
                             time: time,
